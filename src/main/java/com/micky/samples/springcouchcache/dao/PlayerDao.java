@@ -29,4 +29,15 @@ public class PlayerDao {
 		LOGGER.info("Saving player " + player);
 		playerRepo.save(player);
 	}
+	
+	@CacheEvict(cacheNames = "players", key = "#player?.id")
+	public void deletePlayer(Player player) {
+		LOGGER.info("deleting player " + player);
+		playerRepo.delete(player);
+	}
+	
+	@CacheEvict(value = "players", allEntries = true)
+	public void resetAllEntries() {
+		LOGGER.info("Cleared players cache");
+	}
 }
