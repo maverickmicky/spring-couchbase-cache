@@ -1,7 +1,6 @@
 package com.micky.samples.springcouchcache.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import org.springframework.data.couchbase.core.mapping.Document;
 
@@ -17,7 +16,7 @@ public class Player implements Serializable {
 	private String id;
 
 	@Field
-	private BigDecimal balance;
+	private Long balance;
 
 	@Field
 	private String name;
@@ -30,11 +29,11 @@ public class Player implements Serializable {
 		this.id = id;
 	}
 
-	public BigDecimal getBalance() {
+	public Long getBalance() {
 		return balance;
 	}
 
-	public void setBalance(BigDecimal balance) {
+	public void setBalance(Long balance) {
 		this.balance = balance;
 	}
 

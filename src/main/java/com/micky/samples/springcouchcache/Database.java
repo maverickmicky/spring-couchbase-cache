@@ -26,10 +26,6 @@ public class Database extends AbstractCouchbaseConfiguration {
 	@Value("${couch.password}")
 	private String password;
 
-	@Override
-	protected List<String> bootstrapHosts() {
-		return Arrays.asList(hostname);
-	}
 
 	@Override
 	protected String getBucketName() {
@@ -40,16 +36,16 @@ public class Database extends AbstractCouchbaseConfiguration {
 	protected String getBucketPassword() {
 		return password;
 	}
+
+	@Override
+	protected List<String> getBootstrapHosts() {
+		return Arrays.asList(hostname);
+	}
+	
 	
 	@Override
 	public CustomConversions customConversions() {
 		return new CustomConversions(CustomCouchConverters.getConvertersToRegister());
 	}
-
-//	@Bean
-//	public CouchbaseCacheManager cacheManager() throws Exception {
-//		HashMap<String, CouchbaseClient> instances = new HashMap<String, CouchbaseClient>();
-//		instances.put("persistent", couchbaseClient());
-//		return new CouchbaseCacheManager(instances);
-//	}
+	
 }
