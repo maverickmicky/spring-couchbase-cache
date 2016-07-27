@@ -18,7 +18,7 @@ public class PlayerDao {
 	@Autowired
 	public PlayerRepo playerRepo;
 
-	@Cacheable(cacheNames="players", key = "#playerId")
+	@Cacheable(cacheNames="players", key = "#playerId", unless = "#result == null")
 	public Player getPlayer(String playerId) {
 		LOGGER.info("Fetching player id " + playerId);
 		return playerRepo.findOne(playerId);
